@@ -1,4 +1,7 @@
 from django.db import models
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Skill(models.Model):
@@ -14,13 +17,13 @@ class StudentSkill(models.Model):
     is_verified = models.BooleanField(default=False)
     verified_by = models.ForeignKey(
         User,
-        on_deletee=models.SET_NULL,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='verified_skills'
     )
 
-    verified_at: models.DateTimeField(null=True, blank=True)
+    verified_at= models.DateTimeField(null=True, blank=True)
     def __str__(self):
         return f"{self.student} - {self.skill}"
     
