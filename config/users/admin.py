@@ -3,7 +3,7 @@ from .models import CustomUser
 
 # Register your models here.
 @admin.register(CustomUser)
-class CustomerUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'role', 'wallet_address', 'is_active')
     list_filter = ('role',  'is_active')
     search_fields = ('username', 'email')
