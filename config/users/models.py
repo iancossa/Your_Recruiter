@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
         ('UNIVERSITY', 'university'),
     )
 
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='STUDENT')
     wallet_address = models.CharField(max_length=255, blank=True, null=True,
         help_text="Blockchain wallet address (e.g., MetaMask)")
 
