@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-User = settings.AUTH_USER_MODEL
-
 # Create your models here.
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -12,11 +10,11 @@ class Skill(models.Model):
         return self.name
 
 class StudentSkill(models.Model):
-    student = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE,related_name='skills')
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skills')
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     is_verified = models.BooleanField(default=False)
     verified_by = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

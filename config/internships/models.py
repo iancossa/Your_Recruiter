@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Internship(models.Model):
     company = models.ForeignKey(
@@ -13,7 +14,10 @@ class Internship(models.Model):
         'skills.Skill',
         related_name='internships'
     )
-    min_match_percentage = models.PositiveIntegerField(default=50)
+    min_match_percentage = models.PositiveIntegerField(
+        default=50,
+        validators=[MinValueValidator(0), MaxValueValidator(100)]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
